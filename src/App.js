@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
 import styled from "styled-components";
 import Login from "./Login";
+import Page from "./Page";
 import Register from "./Register";
 import Background from "./photo/loginbackground2.jpg";
 const LoginPage = styled.div`
@@ -20,8 +21,9 @@ class App extends Component {
     return (
       <div>
         <Router>
-            <Route exact path="/" component={Login} />
-            <Route path="/register" component={Register} />
+          <Route exact path="/" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/page" component={Page} />
         </Router>
       </div>
     );

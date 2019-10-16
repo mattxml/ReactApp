@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  BrowserRouter
+} from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import "./App.css";
 import Register from "./Register.js";
@@ -89,6 +94,7 @@ const LoginPage = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 const Login = () => {
   const [tempLogin, addTempLogin] = React.useState([]);
 
@@ -117,47 +123,46 @@ const Login = () => {
   };
 
   return (
-    <LoginPage>
-      <FormArea>
-        <Router>
-          <Route path="/page" component={Page} />
-          {logged == 1 && <Redirect to="/page" />}
-        </Router>
-        <Image src={BeVegan} />
-        <link
-          href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700"
-          rel="stylesheet"
-        ></link>
-        <LoginForm>
-          <InputWrapper>
-            <label for="username">Login:</label>
-            <TextField
-              placeholder="Wpisz swoją nazwę użytkownika"
-              type="text"
-              id="name"
-              onChange={newLogin}
-              defaultValue=""
-              value={tempLogin.login}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <label for="password">Hasło:</label>
-            <TextField
-              placeholder="Wpisz swoje hasło"
-              type="password"
-              id="password"
-              onChange={newPassword}
-              value={tempLogin.password}
-            />
-          </InputWrapper>
-          <FormButton type="button" value="Zaloguj" onClick={login} />
-        </LoginForm>
-        <Route path="/register" component={Register} />
-        <StyleLink to="/register">
-          <RegisterInfo>Nie masz konta ? Zarejestruj się !</RegisterInfo>
-        </StyleLink>
-      </FormArea>
-    </LoginPage>
+    <div>
+      {logged == 1 && <Redirect to="/page" />}
+      <LoginPage>
+        <FormArea>
+          <Image src={BeVegan} />
+          <link
+            href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700"
+            rel="stylesheet"
+          ></link>
+          <LoginForm>
+            <InputWrapper>
+              <label for="username">Login:</label>
+              <TextField
+                placeholder="Wpisz swoją nazwę użytkownika"
+                type="text"
+                id="name"
+                onChange={newLogin}
+                defaultValue=""
+                value={tempLogin.login}
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <label for="password">Hasło:</label>
+              <TextField
+                placeholder="Wpisz swoje hasło"
+                type="password"
+                id="password"
+                onChange={newPassword}
+                value={tempLogin.password}
+              />
+            </InputWrapper>
+            <FormButton type="button" value="Zaloguj" onClick={login} />
+          </LoginForm>
+          <Route path="/register" component={Register} />
+          <StyleLink to="/register">
+            <RegisterInfo>Nie masz konta ? Zarejestruj się !</RegisterInfo>
+          </StyleLink>
+        </FormArea>
+      </LoginPage>
+    </div>
   );
 };
 export default Login;

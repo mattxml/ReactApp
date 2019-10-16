@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-const Page = () => {
-  return <div>siema</div>;
-};
+class Page extends Component {
+  render() {
+    return <div>Hello!!!!!!!!!!!!!</div>;
+  }
+}
 export default Page;
