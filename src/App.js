@@ -16,6 +16,7 @@ const LoginPage = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 class App extends Component {
   render() {
     return (
@@ -29,4 +30,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;

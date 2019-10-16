@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-class Page extends Component {
-  render() {
-    return <div>Hello!!!!!!!!!!!!!</div>;
-  }
-}
+import { LoginInfo } from "./Login";
+
+Page.contextType = LoginInfo;
+const Page = () => {
+  return <div>w</div>;
+};
 export default Page;

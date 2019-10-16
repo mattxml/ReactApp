@@ -97,9 +97,7 @@ const LoginPage = styled.div`
 
 const Login = () => {
   const [tempLogin, addTempLogin] = React.useState([]);
-
   const [logged, setLogged] = React.useState(0);
-
   const newLogin = event => {
     addTempLogin({
       login: event.target.value
@@ -124,7 +122,11 @@ const Login = () => {
 
   return (
     <div>
-      {logged == 1 && <Redirect to="/page" />}
+      {logged == 1 && (
+        <LoginInfo.Provider value={logged}>
+          <Redirect to="/page" />
+        </LoginInfo.Provider>
+      )}
       <LoginPage>
         <FormArea>
           <Image src={BeVegan} />
@@ -165,4 +167,5 @@ const Login = () => {
     </div>
   );
 };
+export const LoginInfo = React.createContext(0);
 export default Login;
