@@ -1,0 +1,8 @@
+  {({ login, log }) => (
+            <div>
+              {login}
+              {window.setInterval(function() {
+                console.log(log);
+              }, 5000)}
+            </div>
+          )}

@@ -12,7 +12,7 @@ import styled from "styled-components";
 import BeVegan from "./BeVeganIcon.png";
 import Page from "./Page";
 import Background from "./photo/loginbackground2.jpg";
-
+import { LoginInfoConsumer } from "./LoginInfo";
 const FormArea = styled.div`
   background: rgba(255, 255, 255, 0.7);
   padding: 2em;
@@ -122,12 +122,16 @@ const Login = () => {
 
   return (
     <div>
-      {logged == 1 && (
-        <LoginInfo.Provider value={logged}>
-          <Redirect to="/page" />
-        </LoginInfo.Provider>
-      )}
+      {logged == 1 && <Redirect to="/page" />}
       <LoginPage>
+        <LoginInfoConsumer>
+          {({ login, logout, infolog }) => (
+            <div>
+              <button onClick={login("blaszczykowski")}>aaaaaaaaaaa</button>
+            </div>
+          )}
+        </LoginInfoConsumer>
+
         <FormArea>
           <Image src={BeVegan} />
           <link
@@ -167,5 +171,4 @@ const Login = () => {
     </div>
   );
 };
-export const LoginInfo = React.createContext(0);
 export default Login;
