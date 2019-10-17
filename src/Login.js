@@ -97,7 +97,7 @@ const LoginPage = styled.div`
 
 const Login = () => {
   const [tempLogin, addTempLogin] = React.useState([]);
-  const [logged, setLogged] = React.useState(0);
+  const [logged, setLogged] = React.useState("");
   const newLogin = event => {
     addTempLogin({
       login: event.target.value
@@ -112,7 +112,7 @@ const Login = () => {
 
   const login = () => {
     if (tempLogin.login === "Login" && tempLogin.password == "Haslo") {
-      setLogged(1);
+      setLogged(tempLogin.login);
     }
     addTempLogin({
       login: "",
@@ -122,15 +122,14 @@ const Login = () => {
 
   return (
     <div>
-      {logged == 1 && <Redirect to="/page" />}
       <LoginPage>
-        <LoginInfoConsumer>
-          {({ login, logout, infolog }) => (
-            <div>
-              <button onClick={login("blaszczykowski")}>aaaaaaaaaaa</button>
-            </div>
-          )}
-        </LoginInfoConsumer>
+        {logged != "" && (
+          <div>
+            <LoginInfoConsumer>
+              {({ login }) => <div>{login(logged)}</div>}
+            </LoginInfoConsumer>
+          </div>
+        )}
 
         <FormArea>
           <Image src={BeVegan} />

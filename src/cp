@@ -1,8 +1,5 @@
-  {({ login, log }) => (
-            <div>
-              {login}
-              {window.setInterval(function() {
-                console.log(log);
-              }, 5000)}
-            </div>
-          )}
+    <div>
+            <LoginInfoConsumer>
+              <div>{({ login }) => <div>{login(logged)}</div>}</div>
+            </LoginInfoConsumer>
+          </div>
