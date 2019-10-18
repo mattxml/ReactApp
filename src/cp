@@ -1,5 +1,9 @@
-    <div>
-            <LoginInfoConsumer>
-              <div>{({ login }) => <div>{login(logged)}</div>}</div>
-            </LoginInfoConsumer>
+       {typeof user.infolog !== "undefined" && <Redirect to="/page" />}
+        {logged !== "undefined" && (
+          <div>
+            {user.login(logged)}
+            {console.log(user.logInfo)}
           </div>
+        )}
+        {console.log(user.infolog)}
+        {typeof user.infolog === "undefined" && <Redirect to="/" />}

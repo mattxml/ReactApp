@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,7 +12,7 @@ import styled from "styled-components";
 import BeVegan from "./BeVeganIcon.png";
 import Page from "./Page";
 import Background from "./photo/loginbackground2.jpg";
-import { LoginInfoConsumer } from "./LoginInfo";
+import { LoginInfoConsumer, NewLoginInfo } from "./LoginInfo";
 const FormArea = styled.div`
   background: rgba(255, 255, 255, 0.7);
   padding: 2em;
@@ -96,8 +96,8 @@ const LoginPage = styled.div`
 `;
 
 const Login = () => {
-  const [tempLogin, addTempLogin] = React.useState([]);
-  const [logged, setLogged] = React.useState("");
+  const [tempLogin, addTempLogin] = useState([]);
+
   const newLogin = event => {
     addTempLogin({
       login: event.target.value
@@ -112,25 +112,19 @@ const Login = () => {
 
   const login = () => {
     if (tempLogin.login === "Login" && tempLogin.password == "Haslo") {
-      setLogged(tempLogin.login);
+      user.login(tempLogin.login);
     }
     addTempLogin({
       login: "",
       password: ""
     });
   };
+  const user = useContext(NewLoginInfo);
 
   return (
     <div>
       <LoginPage>
-        {logged != "" && (
-          <div>
-            <LoginInfoConsumer>
-              {({ login }) => <div>{login(logged)}</div>}
-            </LoginInfoConsumer>
-          </div>
-        )}
-
+        {user.infolog != "" && <Redirect to="/page" />}
         <FormArea>
           <Image src={BeVegan} />
           <link

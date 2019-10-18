@@ -16,14 +16,13 @@ const Page = () => {
   const userLogout = () => {
     user.logout();
   };
-  if (user.infolog == "") {
-    return <Redirect to="/" />;
-  }
 
   return (
     <div>
+      {user.infolog == "" && <Redirect to="/" />}
+
       <div onClick={userSettings}>{user.infolog} </div>
-      {click != "" && (
+      {click != 0 && (
         <div>
           <div>Profil</div>
           <div onClick={userLogout}>Wyloguj</div>

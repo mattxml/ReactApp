@@ -1,12 +1,21 @@
 import React from "react";
 import { Redirect } from "react-router";
 const LoginInfo = React.createContext();
+const useStateWithLocalStorage = localStorageKey => {
+  const [infoLog, setInfoLog] = React.useState(
+    localStorage.getItem(localStorageKey) || ""
+  );
 
+  React.useEffect(() => {
+    localStorage.setItem(localStorageKey, infoLog);
+  }, [infoLog]);
+
+  return [infoLog, setInfoLog];
+};
 export const LoginInfoProvider = props => {
-  const [infoLog, setInfoLog] = React.useState("");
+  const [infoLog, setInfoLog] = useStateWithLocalStorage("loginState");
   const login = name => {
     setInfoLog(name);
-    return <Redirect to="/page" />;
   };
   const logout = () => {
     setInfoLog("");
