@@ -1,19 +1,34 @@
 import React, { Component } from "react";
-import { LoginInfoConsumer } from "./LoginInfo";
+import { LoginInfoConsumer, NewLoginInfo } from "./LoginInfo";
 import { Redirect } from "react-router-dom";
-const Test = props => {
-  let name = props.value;
-  if (name == "") {
+
+const Page = () => {
+  const [click, setClick] = React.useState(0);
+  const user = React.useContext(NewLoginInfo);
+
+  const userSettings = () => {
+    if (click == 0) {
+      setClick(1);
+    } else {
+      setClick(0);
+    }
+  };
+  const userLogout = () => {
+    user.logout();
+  };
+  if (user.infolog == "") {
     return <Redirect to="/" />;
   }
-  return <div>Hi {name}</div>;
-};
-const Page = () => {
+
   return (
     <div>
-      <LoginInfoConsumer>
-        {({ infolog }) => <Test value={infolog} />}
-      </LoginInfoConsumer>
+      <div onClick={userSettings}>{user.infolog} </div>
+      {click != "" && (
+        <div>
+          <div>Profil</div>
+          <div onClick={userLogout}>Wyloguj</div>
+        </div>
+      )}
     </div>
   );
 };

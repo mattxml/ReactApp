@@ -9,7 +9,8 @@ export const LoginInfoProvider = props => {
     return <Redirect to="/page" />;
   };
   const logout = () => {
-    setInfoLog("old");
+    setInfoLog("");
+    return <Redirect to="/" />;
   };
   const { children } = props;
   return (
@@ -25,3 +26,4 @@ export const LoginInfoProvider = props => {
   );
 };
 export const LoginInfoConsumer = LoginInfo.Consumer;
+export const NewLoginInfo = LoginInfo;
