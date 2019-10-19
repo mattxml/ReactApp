@@ -1,0 +1,49 @@
+.header {
+  padding: 0.05em;
+  background: white;
+  padding: 0 0 0.2em 0;
+  border-bottom: 2px solid black;
+}
+.ulMenu {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.ulUser {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+.liClickUser {
+  background: green;
+  padding: 1em;
+  border-radius: 20px;
+}
+.ululUser {
+  padding: 0.6em;
+  cursor: pointer;
+  list-style: none;
+}
+.liUser {
+  cursor: pointer;
+}
+.ulUserMenu {
+  display: flex;
+  justify-content: center;
+}
+.liUserMenu {
+  margin-left: 1em;
+  cursor: pointer;
+}
+.liMenu a,
+.liMenu a:active {
+  text-decoration: none;
+  color: black;
+  margin-right: 0.5em;
+  cursor: pointer;
+  outline: none;
+}
+.liMenu:hover {
+  font-weight: bold;
+}
