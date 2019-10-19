@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { NewLoginInfo } from "../context/LoginInfo";
 import { Redirect } from "react-router-dom";
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const Page = () => {
   const user = useContext(NewLoginInfo);
 

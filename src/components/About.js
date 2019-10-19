@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-const Text = styled.div`
+const Text = styled.p`
   padding: 2%;
   text-align: justify;
   text-justify: inter-word;

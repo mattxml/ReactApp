@@ -20,7 +20,7 @@ const Register = () => {
     <LoginPage>
       <LoginFlex>
         <FormArea>
-          <Image src={BeVegan} />
+          <Image src={BeVegan} alt="be vegan logo" />
           <link
             href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700"
             rel="stylesheet"
@@ -31,7 +31,7 @@ const Register = () => {
               <TextField
                 placeholder="Wpisz swoją nazwę użytkownika"
                 type="text"
-                id="name"
+                id="username"
               />
             </InputWrapper>
             <InputWrapper>
@@ -55,11 +55,11 @@ const Register = () => {
               <TextField placeholder="Wpisz swoje imię" type="text" id="name" />
             </InputWrapper>
             <InputWrapper>
-              <label for="username">Adres e-mail:</label>
+              <label for="mail">Adres e-mail:</label>
               <TextField
                 placeholder="Wpisz swój adres e-mail"
                 type="text"
-                id="name"
+                id="mail"
               />
             </InputWrapper>
 

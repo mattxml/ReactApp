@@ -4,46 +4,32 @@
   padding: 0 0 0.2em 0;
   border-bottom: 2px solid black;
 }
-.ulMenu {
+.navOrderedList {
   list-style: none;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-.ulUser {
   display: flex;
   justify-content: space-between;
+}
+.userList {
   list-style: none;
-}
-.liClickUser {
-  background: green;
-  padding: 1em;
-  border-radius: 20px;
-}
-.ululUser {
-  padding: 0.6em;
   cursor: pointer;
-  list-style: none;
+  padding: 0;
 }
-.liUser {
-  cursor: pointer;
-}
-.ulUserMenu {
+.navList {
   display: flex;
-  justify-content: center;
+  list-style: none;
 }
-.liUserMenu {
-  margin-left: 1em;
+.navListItem {
   cursor: pointer;
+  margin-right: 0.4em;
 }
-.liMenu a,
-.liMenu a:active {
-  text-decoration: none;
+.navListItem a,
+a:active {
   color: black;
-  margin-right: 0.5em;
-  cursor: pointer;
-  outline: none;
+  text-decoration: none;
 }
-.liMenu:hover {
+.navListItem:hover {
   font-weight: bold;
+}
+.userName {
+  background: green;
 }

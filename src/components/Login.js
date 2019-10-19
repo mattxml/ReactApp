@@ -44,7 +44,7 @@ const Login = () => {
       <LoginFlex>
         {user.username != "" && <Redirect to="/page" />}
         <FormArea>
-          <Image src={BeVegan} />
+          <Image src={BeVegan} alt="be vegan logo" />
           <link
             href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700"
             rel="stylesheet"
@@ -56,7 +56,7 @@ const Login = () => {
               <TextField
                 placeholder="Wpisz swoją nazwę użytkownika"
                 type="text"
-                id="name"
+                id="username"
                 onChange={newLogin}
                 defaultValue=""
                 value={tempLogin.login}
