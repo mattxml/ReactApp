@@ -1,27 +1,9 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  PrivateRoute
-} from "react-router-dom";
-import "./App.css";
-import styled from "styled-components";
-import Login from "./Login";
-import Page from "./Page";
-import Register from "./Register";
-import Background from "./photo/loginbackground2.jpg";
-import { LoginInfoProvider } from "./LoginInfo";
-const LoginPage = styled.div`
-  font-size: 28px;
-  background: url(${Background}) no-repeat center center fixed;
-  background-size: 100% 100%;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Login from "./components/Login";
+import Page from "./components/Page";
+import Register from "./components/Register";
+import { LoginInfoProvider } from "./context/LoginInfo";
 
 class App extends Component {
   render() {
