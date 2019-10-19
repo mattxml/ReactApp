@@ -1,5 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { NewLoginInfo } from "../context/LoginInfo";
+import { BrowserRouter as Redirect } from "react-router-dom";
 const Wall = () => {
-  return <div>SIEMA</div>;
+  const user = useContext(NewLoginInfo);
+  return (
+    <div>
+      {user.username == "" && <Redirect to="/" />}
+      SIEMA
+    </div>
+  );
 };
 export default Wall;

@@ -1,13 +1,11 @@
 import React, { useContext, useState } from "react";
 import "../styles/MenuLoginStyle.css";
-import Wall from "./Wall";
-import Reciptes from "./Reciptes";
-import Places from "./Places";
+
 import { NewLoginInfo } from "../context/LoginInfo";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 const Header = () => {
   const user = useContext(NewLoginInfo);
-  const [clicked, setClicked] = useState("false");
+  const [clicked, setClicked] = useState(false);
 
   const userSettings = () => {
     setClicked(prev => !prev);
@@ -18,16 +16,16 @@ const Header = () => {
   };
   return (
     <header className="header">
-      {user.username == "" ? (
+      {user.username === "" ? (
         <nav>
-          <ul className="ulMenu">
-            <li className="liMenu">
+          <ul className="menuUnorderedList">
+            <li className="menuList">
               <Link to="/">Zaloguj</Link>
             </li>
-            <li className="liMenu">
+            <li className="menuList">
               <Link to="/register">Zarejestruj</Link>
             </li>
-            <li className="liMenu">
+            <li className="menuList">
               <Link to="/about">O nas</Link>
             </li>
           </ul>
@@ -39,8 +37,10 @@ const Header = () => {
               <p class="userName">{user.username}</p>
               {clicked == true && (
                 <div>
-                  <li>Profil</li>
-                  <li onClick={userLogout}>Wyloguj</li>
+                  <li class="userOption">Profil</li>
+                  <li class="userOption" onClick={userLogout}>
+                    Wyloguj
+                  </li>
                 </div>
               )}
             </ul>

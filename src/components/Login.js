@@ -14,7 +14,7 @@ import {
   StyleLink,
   LoginFlex
 } from "../styles/LoginStyle";
-import Header from "./MenuLogin";
+
 const Login = () => {
   const [tempLogin, addTempLogin] = useState([]);
   const newLogin = event => {

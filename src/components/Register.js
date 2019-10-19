@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter as Route, Redirect } from "react-router-dom";
 import BeVegan from "../images/BeVeganIcon.png";
 import {
   LoginPage,
@@ -14,10 +14,12 @@ import {
   TextField,
   FormButton
 } from "../styles/RegisterStyle";
-import Header from "./MenuLogin";
+import { NewLoginInfo } from "../context/LoginInfo";
 const Register = () => {
+  const user = useContext(NewLoginInfo);
   return (
     <LoginPage>
+      {user.username != "" && <Redirect to="/page" />}
       <LoginFlex>
         <FormArea>
           <Image src={BeVegan} alt="be vegan logo" />
