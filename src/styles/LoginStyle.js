@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Background from "../images/loginbackground.jpg";
 import { Link } from "react-router-dom";
-const FormAreaCSS = styled.div`
+export const FormArea = styled.div`
   background: rgba(255, 255, 255);
   padding: 1em;
   width: 500px;
@@ -13,19 +13,19 @@ const FormAreaCSS = styled.div`
   font-size: 20px;
   margin-top: 1em;
 `;
-const LoginFormCSS = styled.form`
+export const LoginForm = styled.form`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 `;
-const InputWrapperCSS = styled.div`
+export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-family: "Titillium Web", sans-serif;
   margin-bottom: 20px;
 `;
-const TextFieldCSS = styled.input`
+export const TextField = styled.input`
   font-family: "Titillium Web", sans-serif;
   min-width: 300px;
   height: 25px;
@@ -45,7 +45,7 @@ const TextFieldCSS = styled.input`
     padding: 0 0 0.4em 0;
   }
 `;
-const FormButtonCSS = styled.input`
+export const FormButton = styled.input`
   background: white;
   border: 1px solid black;
   border-radius: 10px;
@@ -62,12 +62,12 @@ const FormButtonCSS = styled.input`
   }
   outline: none;
 `;
-const ImageCSS = styled.img`
+export const Image = styled.img`
   width: 100px;
   margin-bottom: 2em;
 `;
 
-const StyleLinkCSS = styled(Link)`
+export const StyleLink = styled(Link)`
   color: black;
   text-decoration: none;
   display: block;
@@ -79,32 +79,24 @@ const StyleLinkCSS = styled(Link)`
     transition: 1s;
   }
 `;
-const LoginPageCSS = styled.div`
+export const LoginPage = styled.div`
   background-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.6) 0%,
       rgba(0, 0, 0, 0.6) 100%
     ),
     url(${Background});
-  height: 91vh;
   background-size: 100% 100%;
   margin-top: 1px;
+  box-sizing: border-box;
+  height: 88vh;
 `;
-const LoginFlexCSS = styled.div`
+export const LoginFlex = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
-const ContainerCSS = styled.div`
+export const Container = styled.div`
+  box-sizing: border-box;
   height: 100%;
 `;
-export const Container = ContainerCSS;
-export const LoginPage = LoginPageCSS;
-export const StyleLink = StyleLinkCSS;
-export const Image = ImageCSS;
-export const FormButton = FormButtonCSS;
-export const TextField = TextFieldCSS;
-export const FormArea = FormAreaCSS;
-export const LoginForm = LoginFormCSS;
-export const InputWrapper = InputWrapperCSS;
-export const LoginFlex = LoginFlexCSS;

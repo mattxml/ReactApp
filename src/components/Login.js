@@ -9,14 +9,16 @@ import {
   Image,
   LoginForm,
   InputWrapper,
-  TextField,
   FormButton,
   StyleLink,
-  LoginFlex
+  LoginFlex,
+  TextField
 } from "../styles/LoginStyle";
+import "../styles/MenuLoginStyle.css";
 
 const Login = () => {
   const [tempLogin, addTempLogin] = useState([]);
+  const [isError, setError] = useState(false);
   const newLogin = event => {
     addTempLogin({
       login: event.target.value
@@ -28,9 +30,12 @@ const Login = () => {
       password: event.target.value
     });
   };
-  const login = () => {
+  const LoginUser = () => {
     if (tempLogin.login === "Login" && tempLogin.password == "Haslo") {
       user.login(tempLogin.login);
+      setError(false);
+    } else {
+      setError(true);
     }
     addTempLogin({
       login: "",
@@ -49,11 +54,14 @@ const Login = () => {
             href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700"
             rel="stylesheet"
           ></link>
+          {isError == true && (
+            <p className="errorMessage">Login lub hasło nieprawidłowe</p>
+          )}
           <LoginForm>
             <InputWrapper>
               <label for="username">Login:</label>
-
               <TextField
+                className={isError && "TextFieldError"}
                 placeholder="Wpisz swoją nazwę użytkownika"
                 type="text"
                 id="username"
@@ -61,10 +69,16 @@ const Login = () => {
                 defaultValue=""
                 value={tempLogin.login}
               />
+              <datalist id="inputList">
+                <option value="white" />
+                <option value="milk" />
+                <option value="dark" />
+              </datalist>
             </InputWrapper>
             <InputWrapper>
               <label for="password">Hasło:</label>
               <TextField
+                className={isError && "TextFieldError"}
                 placeholder="Wpisz swoje hasło"
                 type="password"
                 id="password"
@@ -72,7 +86,7 @@ const Login = () => {
                 value={tempLogin.password}
               />
             </InputWrapper>
-            <FormButton type="button" value="Zaloguj" onClick={login} />
+            <FormButton type="button" value="Zaloguj" onClick={LoginUser} />
           </LoginForm>
           <Route path="/register" component={Register} />
           <StyleLink to="/register">

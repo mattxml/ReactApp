@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import "../styles/MenuLoginStyle.css";
 
 import { NewLoginInfo } from "../context/LoginInfo";
-import { BrowserRouter as Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Header = () => {
   const user = useContext(NewLoginInfo);
   const [clicked, setClicked] = useState(false);

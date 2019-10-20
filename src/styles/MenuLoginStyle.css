@@ -3,13 +3,20 @@
   background: white;
   padding: 0 0 0.2em 0;
   border-bottom: 2px solid black;
+  box-sizing: border-box;
+  height: 10%;
 }
-.menuList a {
-  box-shadow: none;
+.menuList {
+  cursor: pointer;
+  box-sizing: border-box;
   color: black;
   text-decoration: none;
   margin-right: 2em;
   padding: 0 0 1em 0;
+}
+.menuList a {
+  color: black;
+  text-decoration: none;
 }
 .menuList:hover {
   font-weight: bold;
@@ -51,7 +58,7 @@ a:active {
 }
 .userName {
   padding: 1em;
-  box-shadow: none;
+  box-sizing: border-box;
   text-align: center;
   background: #b5f4d2;
   transition: border-radius 0.3s;
@@ -61,4 +68,30 @@ a:active {
 }
 .userOption:hover {
   font-weight: bold;
+}
+.TextField {
+  font-family: "Titillium Web", sans-serif;
+  min-width: 300px;
+  height: 25px;
+  outline-color: black;
+  background: transparent;
+  font-size: 20px;
+  border: none;
+  border-bottom: 1px solid black;
+  line-height: 1.2px;
+  outline: none;
+  padding: 0 0 0.2em 0;
+  transition: padding 0.4s;
+}
+.TextField:focus {
+  padding: 0 0 0.4em 0;
+}
+.TextFieldError {
+  border-bottom: 1px solid red;
+}
+.errorMessage {
+  color: red;
+}
+.successMessage {
+  color: green;
 }

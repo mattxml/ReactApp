@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-const ImageCSS = styled.img`
+export const Image = styled.img`
   width: 100px;
 `;
-const StyleLinkCSS = styled(Link)`
+export const StyleLink = styled(Link)`
   color: black;
   text-decoration: none;
   display: block;
@@ -15,7 +15,7 @@ const StyleLinkCSS = styled(Link)`
     transition: 1s;
   }
 `;
-const TextFieldCSS = styled.input`
+export const TextField = styled.input`
   font-family: "Titillium Web", sans-serif;
   min-width: 300px;
   height: 10px;
@@ -35,7 +35,7 @@ const TextFieldCSS = styled.input`
     padding: 0 0 0.4em 0;
   }
 `;
-const FormButtonCSS = styled.input`
+export const FormButton = styled.input`
   background: white;
   border: 1px solid black;
   border-radius: 10px;
@@ -52,7 +52,3 @@ const FormButtonCSS = styled.input`
   }
   outline: none;
 `;
-export const FormButton = FormButtonCSS;
-export const TextField = TextFieldCSS;
-export const StyleLink = StyleLinkCSS;
-export const Image = ImageCSS;
