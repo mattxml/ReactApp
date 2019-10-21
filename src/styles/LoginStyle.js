@@ -64,7 +64,7 @@ export const FormButton = styled.input`
 `;
 export const Image = styled.img`
   width: 100px;
-  margin-bottom: 2em;
+  margin-bottom: 0.5em;
 `;
 
 export const StyleLink = styled(Link)`
@@ -90,6 +90,9 @@ export const LoginPage = styled.div`
   margin-top: 1px;
   box-sizing: border-box;
   height: 88vh;
+  @media (min-width: 1370px) {
+    height: 92vh;
+  }
 `;
 export const LoginFlex = styled.div`
   display: flex;

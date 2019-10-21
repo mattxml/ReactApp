@@ -1,8 +1,38 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../styles/MenuLoginStyle.css";
-
+import {
+  MenuList,
+  MenuListLink,
+  MenuUnorderedList,
+  NavOrderedList,
+  UserMenuList,
+  UserName,
+  UserOption
+} from "../styles/MenuLoginStyle";
 import { NewLoginInfo } from "../context/LoginInfo";
 import { Link } from "react-router-dom";
+const SuperComponent = () => {
+  const user = useContext(NewLoginInfo);
+  const userLogout = () => {
+    user.logout();
+  };
+
+  useEffect(() => {
+    const temp = document.querySelectorAll(".UserOption");
+    setTimeout(() =>
+      temp.forEach(w => w.classList.toggle("clickUserAnimation"), 3000)
+    );
+  }, []);
+  return (
+    <div>
+      <li className="UserOption">Profil</li>
+
+      <li className="UserOption" expanded onClick={userLogout}>
+        Wyloguj
+      </li>
+    </div>
+  );
+};
 const Header = () => {
   const user = useContext(NewLoginInfo);
   const [clicked, setClicked] = useState(false);
@@ -11,51 +41,42 @@ const Header = () => {
     setClicked(prev => !prev);
   };
 
-  const userLogout = () => {
-    user.logout();
-  };
   return (
     <header className="header">
       {user.username === "" ? (
         <nav>
-          <ul className="menuUnorderedList">
-            <li className="menuList">
-              <Link to="/">Zaloguj</Link>
-            </li>
-            <li className="menuList">
-              <Link to="/register">Zarejestruj</Link>
-            </li>
-            <li className="menuList">
-              <Link to="/about">O nas</Link>
-            </li>
-          </ul>
+          <MenuUnorderedList>
+            <MenuList>
+              <MenuListLink to="/">Zaloguj</MenuListLink>
+            </MenuList>
+            <MenuList>
+              <MenuListLink to="/register">Zarejestruj</MenuListLink>
+            </MenuList>
+            <MenuList>
+              <MenuListLink to="/about">O nas</MenuListLink>
+            </MenuList>
+          </MenuUnorderedList>
         </nav>
       ) : (
         <nav>
-          <ol className="navOrderedList">
-            <ul className="userList" onClick={userSettings}>
-              <p class="userName">{user.username}</p>
-              {clicked == true && (
-                <div>
-                  <li class="userOption">Profil</li>
-                  <li class="userOption" onClick={userLogout}>
-                    Wyloguj
-                  </li>
-                </div>
-              )}
-            </ul>
-            <ul className="navList">
-              <li className="navListItem">
-                <Link to="/wall">Tablica</Link>
-              </li>
-              <li className="navListItem">
-                <Link to="/places">Miejsca</Link>
-              </li>
-              <li className="navListItem">
-                <Link to="/reciptes">Przepisy</Link>
-              </li>
-            </ul>
-          </ol>
+          <NavOrderedList>
+            {/* usermenulist*/}
+            <UserMenuList onClick={userSettings}>
+              <UserName>{user.username}</UserName>
+              {clicked === true && <SuperComponent />}
+            </UserMenuList>
+            <MenuUnorderedList>
+              <MenuList>
+                <MenuListLink to="/wall">Tablica</MenuListLink>
+              </MenuList>
+              <MenuList>
+                <MenuListLink to="/places">Miejsca</MenuListLink>
+              </MenuList>
+              <MenuList>
+                <MenuListLink to="/reciptes">Przepisy</MenuListLink>
+              </MenuList>
+            </MenuUnorderedList>
+          </NavOrderedList>
         </nav>
       )}
     </header>

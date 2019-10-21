@@ -6,92 +6,23 @@
   box-sizing: border-box;
   height: 10%;
 }
-.menuList {
-  cursor: pointer;
-  box-sizing: border-box;
-  color: black;
-  text-decoration: none;
-  margin-right: 2em;
-  padding: 0 0 1em 0;
-}
-.menuList a {
-  color: black;
-  text-decoration: none;
-}
-.menuList:hover {
-  font-weight: bold;
-}
-
-.menuUnorderedList {
-  display: flex;
-  list-style: none;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0;
-}
-.navOrderedList {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-.userList {
-  list-style: none;
-  cursor: pointer;
-  padding: 0;
-}
-.navList {
-  display: flex;
-  list-style: none;
-}
-.navListItem {
-  cursor: pointer;
-  margin-right: 0.4em;
-}
-.navListItem a,
-a:active {
-  color: black;
-  text-decoration: none;
-}
-.navListItem:hover {
-  font-weight: bold;
-}
-.userName {
-  padding: 1em;
-  box-sizing: border-box;
-  text-align: center;
-  background: #b5f4d2;
-  transition: border-radius 0.3s;
-}
-.userName:hover {
-  border-radius: 20px;
-}
-.userOption:hover {
-  font-weight: bold;
-}
-.TextField {
-  font-family: "Titillium Web", sans-serif;
-  min-width: 300px;
-  height: 25px;
-  outline-color: black;
-  background: transparent;
-  font-size: 20px;
-  border: none;
-  border-bottom: 1px solid black;
-  line-height: 1.2px;
-  outline: none;
-  padding: 0 0 0.2em 0;
-  transition: padding 0.4s;
-}
-.TextField:focus {
-  padding: 0 0 0.4em 0;
-}
 .TextFieldError {
   border-bottom: 1px solid red;
 }
+.clickUserAnimation {
+  color: black;
+}
+.UserOption {
+  color: white;
+  transition: color 1s;
+}
 .errorMessage {
+  padding: 0;
+  margin: 0;
   color: red;
 }
 .successMessage {
+  padding: 0;
+  margin: 0;
   color: green;
 }

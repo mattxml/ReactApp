@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { NewLoginInfo } from "../context/LoginInfo";
-import { BrowserRouter as Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 const Wall = () => {
   const user = useContext(NewLoginInfo);
   return (
     <div>
-      {user.username == "" && <Redirect to="/" />}
+      {user.username === "" && <Redirect to="/" />}
       SIEMA
     </div>
   );

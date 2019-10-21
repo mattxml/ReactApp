@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 import BeVegan from "../images/BeVeganIcon.png";
 import {
   LoginPage,
-  FormArea,
   LoginForm,
   InputWrapper,
   LoginFlex
@@ -12,9 +11,11 @@ import {
   StyleLink,
   Image,
   TextField,
+  FormArea,
   FormButton
 } from "../styles/RegisterStyle";
 import { NewLoginInfo } from "../context/LoginInfo";
+import "../styles/MenuLoginStyle.css";
 const GoLoginPage = () => {
   const [timeToRedirect, setTimeToRedirect] = useState(false);
 
@@ -102,6 +103,7 @@ const Register = () => {
             <InputWrapper>
               <label for="username">Login:</label>
               <TextField
+                className={isError && "TextFieldError"}
                 placeholder="Wpisz swoją nazwę użytkownika"
                 type="text"
                 id="username"
@@ -112,6 +114,7 @@ const Register = () => {
             <InputWrapper>
               <label for="password">Hasło:</label>
               <TextField
+                className={isError && "TextFieldError"}
                 placeholder="Wpisz swoje hasło"
                 type="password"
                 id="password"
@@ -122,6 +125,7 @@ const Register = () => {
             <InputWrapper>
               <label for="repassword">Powtórz hasło:</label>
               <TextField
+                className={isError && "TextFieldError"}
                 placeholder="Wpisz swoje hasło ponownie"
                 type="password"
                 id="repassword"
@@ -132,6 +136,7 @@ const Register = () => {
             <InputWrapper>
               <label for="name">Imię:</label>
               <TextField
+                className={isError && "TextFieldError"}
                 placeholder="Wpisz swoje imię"
                 type="text"
                 id="name"
@@ -142,6 +147,7 @@ const Register = () => {
             <InputWrapper>
               <label for="mail">Adres e-mail:</label>
               <TextField
+                className={isError && "TextFieldError"}
                 placeholder="Wpisz swój adres e-mail"
                 type="text"
                 id="mail"
