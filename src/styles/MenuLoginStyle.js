@@ -47,10 +47,17 @@ export const UserName = styled.p`
 `;
 export const UserOption = styled.li`
   color: white;
-  transition: color 4s;
-  ${props =>
-    props.expanded &&
-    css`
-      color: black;
-    `};
+  animation-name: example;
+  animation-duration: 1.1s;
+  animation-fill-mode: forwards;
+  :hover{
+    font-weight:bold;
+  }
+@keyframes example {
+  from {
+    color: white;
+  }
+  to {
+    color: black;
+  }
 `;

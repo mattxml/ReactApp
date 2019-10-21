@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import "../styles/MenuLoginStyle.css";
+import React, { useContext, useState } from "react";
 import {
   MenuList,
   MenuListLink,
@@ -10,36 +9,31 @@ import {
   UserOption
 } from "../styles/MenuLoginStyle";
 import { NewLoginInfo } from "../context/LoginInfo";
-import { Link } from "react-router-dom";
-const SuperComponent = () => {
+const Test = ({ click }) => {
   const user = useContext(NewLoginInfo);
-  const userLogout = () => {
-    user.logout();
-  };
-
-  useEffect(() => {
-    const temp = document.querySelectorAll(".UserOption");
-    setTimeout(() =>
-      temp.forEach(w => w.classList.toggle("clickUserAnimation"), 3000)
-    );
-  }, []);
-  return (
-    <div>
-      <li className="UserOption">Profil</li>
-
-      <li className="UserOption" expanded onClick={userLogout}>
-        Wyloguj
-      </li>
-    </div>
-  );
-};
-const Header = () => {
-  const user = useContext(NewLoginInfo);
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(click);
 
   const userSettings = () => {
     setClicked(prev => !prev);
   };
+  const userLogout = () => {
+    user.logout();
+  };
+
+  return (
+    <UserMenuList>
+      <UserName onClick={userSettings}>{user.username}</UserName>
+      {clicked == true && (
+        <div>
+          <UserOption> Profil</UserOption>
+          <UserOption onClick={userLogout}>Wyloguj</UserOption>{" "}
+        </div>
+      )}
+    </UserMenuList>
+  );
+};
+const Header = () => {
+  const user = useContext(NewLoginInfo);
 
   return (
     <header className="header">
@@ -60,11 +54,7 @@ const Header = () => {
       ) : (
         <nav>
           <NavOrderedList>
-            {/* usermenulist*/}
-            <UserMenuList onClick={userSettings}>
-              <UserName>{user.username}</UserName>
-              {clicked === true && <SuperComponent />}
-            </UserMenuList>
+            <Test click={false} />
             <MenuUnorderedList>
               <MenuList>
                 <MenuListLink to="/wall">Tablica</MenuListLink>

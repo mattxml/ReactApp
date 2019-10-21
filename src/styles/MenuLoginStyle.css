@@ -9,13 +9,7 @@
 .TextFieldError {
   border-bottom: 1px solid red;
 }
-.clickUserAnimation {
-  color: black;
-}
-.UserOption {
-  color: white;
-  transition: color 1s;
-}
+
 .errorMessage {
   padding: 0;
   margin: 0;
