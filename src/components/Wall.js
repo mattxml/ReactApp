@@ -4,16 +4,18 @@ import { Redirect } from "react-router-dom";
 import { CommentsLoading } from "./CommentsLoading";
 import { PostList } from "./PostList";
 import { WallContainer } from "../styles/WallStyle";
+import "../styles/MenuLoginStyle.css";
 const Wall = () => {
   const user = useContext(NewLoginInfo);
   return (
-    <div>
-      {user.username === "" && <Redirect to="/" />}
+    <div className="SS">
       <WallContainer>
+        {user.username === "" && <Redirect to="/" />}
+
         <div>we</div>
         <PostList />
-        <div></div>
-      </WallContainer>
+        <div>we</div>
+      </WallContainer>{" "}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { posts } from "../temp/posts";
 import { CommentsLoading } from "./CommentsLoading";
 import { UserList } from "./UserList";
 import { users } from "../temp/users";
+import { PostListStyled } from "../styles/WallStyle";
 export const PostList = () => {
   const [items, setItems] = useState(posts.slice(0, 3));
   let num = 3;
@@ -20,7 +21,7 @@ export const PostList = () => {
   };
 
   return (
-    <div>
+    <div className="containerPost">
       <InfiniteScroll
         dataLength={items.length}
         next={fetchMoreData}
@@ -28,16 +29,16 @@ export const PostList = () => {
         loader={<h4>Ładowanie...</h4>}
       >
         {items.map(({ id, by, subject, content }) => (
-          <ul>
+          <PostListStyled>
             <li>
               <UserList by={by} />
             </li>
             <li>{subject}</li>
             <li>{content}</li>
             <CommentsLoading id={id} />
-          </ul>
+          </PostListStyled>
         ))}
-      </InfiniteScroll>
+      </InfiniteScroll>{" "}
     </div>
   );
 };
