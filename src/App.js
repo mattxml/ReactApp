@@ -11,9 +11,19 @@ import { LoginInfoProvider } from "./context/LoginInfo";
 import About from "./components/About";
 import Header from "./components/MenuLogin";
 import { Container } from "./styles/LoginStyle";
+
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+  body{
+    font-family: 'Titillium Web', sans-serif
+  }
+`;
 const App = () => {
   return (
     <Container>
+      <GlobalStyle />
       <Router>
         <LoginInfoProvider>
           <Header />

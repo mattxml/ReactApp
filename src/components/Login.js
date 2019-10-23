@@ -50,10 +50,6 @@ const Login = () => {
         {user.username != "" && <Redirect to="/page" />}
         <FormArea>
           <Image src={BeVegan} alt="be vegan logo" />
-          <link
-            href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700"
-            rel="stylesheet"
-          ></link>
           {isError == true && (
             <p className="errorMessage">Login lub hasło nieprawidłowe</p>
           )}

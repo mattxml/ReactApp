@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { comments } from "../../temp/comments";
 import { UserList } from "./UserList";
+import {
+  UnorderedComment,
+  CommentContent,
+  CommentAuthor,
+  ShowComments
+} from "../../styles/WallStyle";
 export const CommentsLoading = props => {
   const [numberOfPosts, setnumberOfPosts] = useState(2);
   const commentByPosts = comments.filter(({ postid }) => postid === props.id);
@@ -26,15 +32,19 @@ export const CommentsLoading = props => {
     <div>
       {commentByPosts.slice(0, numberOfPosts).map(({ postid, by, content }) => {
         return (
-          <ul>
-            <li>
+          <UnorderedComment>
+            <CommentAuthor>
               <UserList by={by} />
-            </li>
-            <li>{content}</li>
-          </ul>
+            </CommentAuthor>
+            <CommentContent>{content}</CommentContent>
+          </UnorderedComment>
         );
       })}
-      {hasMore === true && <button onClick={loadMore}>we</button>}
+      {hasMore === true && (
+        <ShowComments onClick={loadMore}>
+          Wyświetl więcej komentarzy
+        </ShowComments>
+      )}
     </div>
   );
 };

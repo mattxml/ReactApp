@@ -9,14 +9,12 @@ import "../../styles/MenuLoginStyle.css";
 const Wall = () => {
   const user = useContext(NewLoginInfo);
   return (
-    <div className="SS">
-      <WallContainer>
-        {user.username === "" && <Redirect to="/" />}
-        <div>we</div>
-        <PostList />
-        <UsersRanking />
-      </WallContainer>
-    </div>
+    <WallContainer>
+      {user.username === "" && <Redirect to="/" />}
+      <div>we</div>
+      <PostList />
+      <UsersRanking />
+    </WallContainer>
   );
 };
 export default Wall;

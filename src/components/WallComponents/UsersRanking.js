@@ -1,12 +1,21 @@
 import { users } from "../../temp/users";
 import React from "react";
+import {
+  UsersRankingStyled,
+  UsersItem,
+  OrderedUsersList
+} from "../../styles/WallStyle";
 export const UsersRanking = () => {
-  const listUsers = users.slice(0, 4).map(({ id, name, score }) => (
-    <ul>
-      <li>{id}</li>
+  const usersSorted = users.sort((a, b) => (a.score < b.score ? 1 : -1));
+  const listUsers = usersSorted.slice(0, 4).map(({ id, name, score }) => (
+    <UsersRankingStyled>
       <li>{name}</li>
-      <li>{score}</li>
-    </ul>
+      <UsersItem>{score}</UsersItem>
+    </UsersRankingStyled>
   ));
-  return <ol>{listUsers}</ol>;
+  return (
+    <OrderedUsersList>
+      Najlepsi użytkownicy dzisiaj :{listUsers}
+    </OrderedUsersList>
+  );
 };
