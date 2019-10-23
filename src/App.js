@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Page from "./components/Page";
 import Register from "./components/Register";
-import Wall from "./components/Wall";
+import Wall from "./components/WallComponents/Wall";
 import Reciptes from "./components/Reciptes";
 import Places from "./components/Places";
 import Users from "./components/Users";

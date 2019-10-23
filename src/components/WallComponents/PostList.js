@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { posts } from "../temp/posts";
+import { posts } from "../../temp/posts";
 import { CommentsLoading } from "./CommentsLoading";
 import { UserList } from "./UserList";
-import { users } from "../temp/users";
-import { PostListStyled } from "../styles/WallStyle";
+import { users } from "../../temp/users";
+import { PostListStyled } from "../../styles/WallStyle";
 export const PostList = () => {
   const [items, setItems] = useState(posts.slice(0, 3));
   let num = 3;

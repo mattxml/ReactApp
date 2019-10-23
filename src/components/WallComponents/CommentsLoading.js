@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { comments } from "../temp/comments";
+import { comments } from "../../temp/comments";
 import { UserList } from "./UserList";
 export const CommentsLoading = props => {
   const [numberOfPosts, setnumberOfPosts] = useState(2);
   const commentByPosts = comments.filter(({ postid }) => postid === props.id);
   const [hasMore, setHasMore] = useState(true);
   useEffect(() => {
-    if (props.id == 1) {
-      console.log(commentByPosts);
-      console.log(commentByPosts.length);
-      console.log(numberOfPosts);
-    }
     if (commentByPosts.length <= numberOfPosts) {
       setHasMore(false);
     }
