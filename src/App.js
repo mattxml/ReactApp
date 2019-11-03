@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Login from "./components/Login";
+import Page from "./components/Page";
+import Register from "./components/Register";
+import Wall from "./components/WallComponents/Wall";
+import Reciptes from "./components/Reciptes";
+import Places from "./components/Places";
+import Users from "./components/Users";
+import { LoginInfoProvider } from "./context/LoginInfo";
+import About from "./components/About";
+import Header from "./components/MenuLogin";
+import { Container } from "./styles/LoginStyle";
+import axios from "axios";
+import { createGlobalStyle } from "styled-components";
 
-function App() {
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+  body{
+    font-family: 'Titillium Web', sans-serif
+  }
+`;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <GlobalStyle />
+      <Router>
+        <LoginInfoProvider>
+          <Header />
+          <Route exact path="/" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/page" component={Page} />
+          <Route path="/about" component={About} />
+          <Route path="/wall" component={Wall} />
+          <Route path="/reciptes" component={Reciptes} />
+          <Route path="/places" component={Places} />
+          <Route path="/users" component={Users} />
+        </LoginInfoProvider>
+      </Router>
+    </Container>
   );
-}
+};
 
 export default App;
