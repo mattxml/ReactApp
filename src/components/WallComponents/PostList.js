@@ -3,23 +3,21 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { CommentsLoading } from "./CommentsLoading";
 import { UserList } from "./UserList";
 import axios from "axios";
-import { users } from "../../temp/users";
 import "../../styles/MenuLoginStyle.css";
 import {
   UnorderedPost,
   PostAuthor,
   PostSubject,
   PostContent,
-  PostHeader,
-  LoginForm,
-  FormButton,
-  InputWrapper,
-  TextField,
   UserControl,
   Image,
   UnorderedImage,
+  PostLink,
   ListImage,
-  Comments
+  Comments,
+  WallHeader,
+  SortPost,
+  SortOption
 } from "../../styles/WallStyle";
 import down_regular from "../../icons/down.svg";
 import down_solid from "../../icons/down_solid.svg";
@@ -33,24 +31,9 @@ import up_solid from "../../icons/up_solid.svg";
 import up_regular from "../../icons/up.svg";
 export const PostList = () => {
   const [allPosts, setAllPosts] = useState([]);
+  const [apiLink, setApiLink] = useState("http://localhost:3001/posts");
   const [items, setItems] = useState([]);
-  const [numberPosts, setNumberPosts] = useState(3);
-  const [isError, setError] = useState(false);
-  const [tempPost, setPost] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  const newSubject = event => {
-    setPost({
-      id: 20,
-      by: 2,
-      subject: event.target.value
-    });
-  };
-  const newContent = event => {
-    setPost({
-      ...tempPost,
-      content: event.target.value
-    });
-  };
   const FetchMoreData = () => {
     setTimeout(() => {
       setItems(allPosts.slice(0, items.length + 2));
@@ -60,34 +43,23 @@ export const PostList = () => {
       setHasMore(false);
     }
   };
+  const sortPosts = event => {
+    if (event.target.value === "new") {
+      setApiLink("http://localhost:3001/bestposts");
+    } else {
+      setApiLink("http://localhost:3001/posts");
+    }
+  };
   useEffect(() => {
+    console.log("W");
     const fetchData = async () => {
-      const result = await axios("http://localhost:3001/posts");
+      const result = await axios(apiLink);
       setAllPosts(result.data);
       setItems(result.data.slice(0, 3));
     };
     fetchData();
-  }, []);
+  }, [apiLink]);
 
-  const publicPost = () => {
-    /*
-    if (tempPost.subject.length > 2 && tempPost.content.length > 2) {
-      posts.push(tempPost);
-      console.log(tempPost);
-      console.log(tempPost.subject.length);
-      console.log(tempPost.content.length);
-      setError(false);
-    } else {
-      setError(true);
-    }
-    setPost({
-      id: 20,
-      by: 2,
-      subject: "",
-      content: ""
-    });
-    */
-  };
   return (
     <div className="containerPost">
       <InfiniteScroll
@@ -96,39 +68,20 @@ export const PostList = () => {
         hasMore={hasMore}
         loader={<h4>Ładowanie...</h4>}
       >
-        <LoginForm>
-          {isError && <p className="errorMessage">Post jest za krótki</p>}
-          <InputWrapper>
-            <label for="subject">Temat:</label>
-            <TextField
-              className={isError && "TextFieldError"}
-              placeholder="Wpisz temat posta"
-              type="text"
-              id="subject"
-              onChange={newSubject}
-              defaultValue=""
-              value={tempPost.subject}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <label for="content">Treść:</label>
-            <TextField
-              className={isError && "TextFieldError"}
-              placeholder="Wpisz treść posta"
-              type="text"
-              id="content"
-              onChange={newContent}
-              value={tempPost.content}
-            />
-          </InputWrapper>
-          <FormButton type="button" value="Opublikuj" onClick={publicPost} />
-        </LoginForm>
-        {items.map(({ id, by, subject, content }) => (
+        <WallHeader>
+          <SortPost onChange={sortPosts}>
+            <SortOption value="best">Najlepsze</SortOption>
+            <SortOption value="new">Najnowsze</SortOption>
+          </SortPost>
+          <PostLink to="/addpost">Dodaj post</PostLink>
+        </WallHeader>
+
+        {items.map(({ idposts, autor, tytul, content, wynik }) => (
           <UnorderedPost>
             <PostAuthor>
-              <UserList by={by} />
+              <UserList by={autor} />
             </PostAuthor>
-            <PostSubject>{subject}</PostSubject>
+            <PostSubject>{tytul}</PostSubject>
             <PostContent>{content}</PostContent>
             <UnorderedImage>
               <ListImage>
@@ -158,7 +111,7 @@ export const PostList = () => {
                   name={plus_solid}
                 />
               </ListImage>
-              <ListImage>20</ListImage>
+              <ListImage>{wynik}</ListImage>
             </UnorderedImage>
             <UnorderedImage>
               <Comments>
@@ -166,7 +119,7 @@ export const PostList = () => {
               </Comments>
             </UnorderedImage>
             <UserControl>
-              <CommentsLoading id={id} />
+              <CommentsLoading id={idposts} />
             </UserControl>
           </UnorderedPost>
         ))}

@@ -10,8 +10,8 @@ import Users from "./components/Users";
 import { LoginInfoProvider } from "./context/LoginInfo";
 import About from "./components/About";
 import Header from "./components/MenuLogin";
+import AddPost from "./components/WallComponents/AddPost";
 import { Container } from "./styles/LoginStyle";
-import axios from "axios";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -36,7 +36,8 @@ const App = () => {
           <Route path="/wall" component={Wall} />
           <Route path="/reciptes" component={Reciptes} />
           <Route path="/places" component={Places} />
-          <Route path="/users" component={Users} />
+          <Route path="/users/:id" component={Users} />
+          <Route path="/addpost" component={AddPost} />
         </LoginInfoProvider>
       </Router>
     </Container>

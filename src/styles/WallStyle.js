@@ -1,4 +1,26 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+export const SortPost = styled.select`
+  padding: 1em;
+  cursor: pointer;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.1em;
+  border: 1px solid black;
+`;
+export const UserLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+`;
+export const SortOption = styled.option`
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Nunito", sans-serif;
+  position: relative;
+`;
+export const WallHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 export const UnorderedImage = styled.ul`
   display: flex;
   list-style: none;
@@ -52,7 +74,7 @@ export const UnorderedPost = styled.ul`
   padding: 0;
   font-size: 16px;
   background-color: #fffcfc;
-  margin-bottom: 0.2em;
+  margin: 3em 0 0.2em 0;
   text-align: justify;
   display: flex;
   list-style: none;
@@ -79,6 +101,7 @@ export const PostContent = styled.li`
 
 export const UnorderedComment = styled.li`
   list-style: none;
+  margin: 1em 0 0 0;
 `;
 export const CommentAuthor = styled.p`
   margin: 0;
@@ -106,7 +129,17 @@ export const PostHeader = styled.div`
   justify-content: space-between;
   font-size: 18px;
 `;
-export const LoginForm = styled.form`
+export const PostLink = styled(Link)`
+  padding: 1em;
+  border: 1px solid black;
+  font-size: 1.2em;
+  color: black;
+  text-decoration: none;
+  :hover {
+    text-decoration: underline;
+  }
+`;
+export const PostForm = styled.form`
   display: flex;
   align-items: center;
   justify-content: center;
