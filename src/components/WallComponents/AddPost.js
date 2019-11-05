@@ -1,36 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   PostForm,
   FormButton,
   InputWrapper,
-  TextField
+  TextField,
+  TextArea
 } from "../../styles/WallStyle";
+import { Redirect } from "react-router-dom";
+import { NewLoginInfo } from "../../context/LoginInfo";
+import axios from "axios";
+const GoPostsPage = () => {
+  const [timeToRedirect, setTimeToRedirect] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setTimeToRedirect(true), 1200);
+  }, []);
+
+  return <div>{timeToRedirect && <Redirect to="/wall" />}</div>;
+};
 const AddPost = () => {
+  const user = useContext(NewLoginInfo);
+  const [userid, setUserId] = useState();
   const [tempPost, setPost] = useState([]);
-  const [isError, setError] = useState(false);
+  const [isError, setError] = useState(undefined);
+
   const publicPost = () => {
-    /*
-    if (tempPost.subject.length > 2 && tempPost.content.length > 2) {
-      posts.push(tempPost);
-      console.log(tempPost);
-      console.log(tempPost.subject.length);
-      console.log(tempPost.content.length);
-      setError(false);
-    } else {
-      setError(true);
-    }
-    setPost({
-      id: 20,
-      by: 2,
-      subject: "",
-      content: ""
-    });
-    */
+    const newPost = {
+      idposts: 0,
+      tytul: tempPost.subject,
+      content: tempPost.content,
+      wynik: 100,
+      autor: userid
+    };
+
+    axios
+      .post("http://localhost:3001/posts", newPost)
+      .then(res => {
+        setError(false);
+      })
+      .catch(error => {
+        setError(true);
+      });
+
+    console.log(newPost);
   };
   const newSubject = event => {
     setPost({
-      id: 20,
-      by: 2,
       subject: event.target.value
     });
   };
@@ -40,13 +55,32 @@ const AddPost = () => {
       content: event.target.value
     });
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `http://localhost:3001/users/${user.username}`
+      );
+      return result.data;
+    };
+    fetchData().then(res => {
+      setUserId(res[0].idusers);
+    });
+  }, []);
   return (
     <PostForm>
-      {isError && <p className="errorMessage">Post jest za krótki</p>}
+      {isError == false && (
+        <div>
+          <p className="successMessage">Udało się dodać post</p>
+          <GoPostsPage />
+        </div>
+      )}
+      {isError == true && (
+        <p className="errorMessage">Nie udało się dodać postu.</p>
+      )}
       <InputWrapper>
         <label for="subject">Temat:</label>
         <TextField
-          className={isError && "TextFieldError"}
+          className={isError === true && "TextFieldError"}
           placeholder="Wpisz temat posta"
           type="text"
           id="subject"
@@ -57,8 +91,8 @@ const AddPost = () => {
       </InputWrapper>
       <InputWrapper>
         <label for="content">Treść:</label>
-        <TextField
-          className={isError && "TextFieldError"}
+        <TextArea
+          className={isError === true && "TextFieldError"}
           placeholder="Wpisz treść posta"
           type="text"
           id="content"

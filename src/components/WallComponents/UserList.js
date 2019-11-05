@@ -1,9 +1,21 @@
-import React from "react";
-import { users } from "../../temp/users";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { UserLink } from "../../styles/WallStyle";
 export const UserList = props => {
-  const userName = users.filter(({ id }) => id === props.by);
+  const [userInfo, setUserInfo] = useState();
+  async function myAsyncEffect() {
+    const result = await axios(`http://localhost:3001/users/${props.by}`);
+    setUserInfo(result.data[0]);
+  }
+  useEffect(() => {
+    myAsyncEffect();
+  }, []);
+
   return (
-    <UserLink to={"/users/" + userName[0].id}>{userName[0].name}</UserLink>
+    <div>
+      {userInfo !== undefined && (
+        <UserLink to={"/users/" + userInfo.idusers}>{userInfo.imie}</UserLink>
+      )}
+    </div>
   );
 };

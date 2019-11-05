@@ -30,15 +30,6 @@ const GoLoginPage = () => {
 const Register = () => {
   const [tempRegister, addTempRegister] = useState([]);
   const [isError, setError] = useState(undefined);
-
-  let w = {
-    login: "",
-    password: "",
-    repassword: "",
-    mail: "",
-    name: ""
-  };
-
   const validateEmail = email => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
@@ -76,8 +67,6 @@ const Register = () => {
       axios
         .post("http://localhost:3001/users", newUser)
         .then(res => {
-          console.log(res);
-          console.log(res.data);
           setError(false);
         })
         .catch(error => {

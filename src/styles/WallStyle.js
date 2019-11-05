@@ -97,6 +97,7 @@ export const PostSubject = styled.li`
 `;
 export const PostContent = styled.li`
   margin-top: 1em;
+  width: 100%;
 `;
 
 export const UnorderedComment = styled.li`
@@ -140,6 +141,7 @@ export const PostLink = styled(Link)`
   }
 `;
 export const PostForm = styled.form`
+  margin: 5em 0 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -153,11 +155,11 @@ export const InputWrapper = styled.div`
 `;
 export const TextField = styled.input`
   font-family: "Nunito", sans-serif;
-  min-width: 300px;
-  height: 25px;
+  min-width: 500px;
+  height: 35px;
   outline-color: black;
   background: transparent;
-  font-size: 20px;
+  font-size: 24px;
   border: none;
   border-bottom: 1px solid black;
   line-height: 1.2px;
@@ -171,13 +173,20 @@ export const TextField = styled.input`
     padding: 0 0 0.4em 0;
   }
 `;
+export const TextArea = styled.textarea`
+  border: 1px solid black;
+  min-width: 500px;
+  min-height: 300px;
+  font-size: 24px;
+  outline: none;
+`;
 export const FormButton = styled.input`
   background: white;
   border: 1px solid black;
   border-radius: 10px;
   padding: 1em;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 20px;
   :hover,
   :focus {
     color: white;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { comments } from "../../temp/comments";
+import axios from "axios";
 import { UserList } from "./UserList";
 import {
   UnorderedComment,
@@ -9,41 +9,53 @@ import {
 } from "../../styles/WallStyle";
 export const CommentsLoading = props => {
   const [numberOfPosts, setnumberOfPosts] = useState(2);
-  const commentByPosts = comments.filter(({ postid }) => postid === props.id);
   const [hasMore, setHasMore] = useState(true);
+  const [commentInfo, setCommentInfo] = useState();
+  async function myAsyncEffect() {
+    const result = await axios(
+      `http://localhost:3001/commentsbypost/${props.id}`
+    );
+    setCommentInfo(result.data);
+  }
+
   useEffect(() => {
-    if (commentByPosts.length <= numberOfPosts) {
-      setHasMore(false);
-    }
-  });
+    myAsyncEffect();
+  }, []);
 
   const loadMore = () => {
-    const subtraction = commentByPosts.length - numberOfPosts;
+    const subtraction = commentInfo.length - numberOfPosts;
     if (subtraction >= 2) {
       setnumberOfPosts(val => val + 2);
     } else if (subtraction == 1) {
       setnumberOfPosts(val => val + 2);
     }
-    if (commentByPosts.length <= numberOfPosts) {
+    if (commentInfo.length <= numberOfPosts) {
       setHasMore(false);
     }
   };
   return (
     <div>
-      {commentByPosts.slice(0, numberOfPosts).map(({ postid, by, content }) => {
-        return (
-          <UnorderedComment>
-            <CommentAuthor>
-              <UserList by={by} />
-            </CommentAuthor>
-            <CommentContent>{content}</CommentContent>
-          </UnorderedComment>
-        );
-      })}
-      {hasMore === true && (
-        <ShowComments onClick={loadMore}>
-          Wyświetl więcej komentarzy
-        </ShowComments>
+      {console.log(commentInfo)}
+      {commentInfo !== undefined && (
+        <div>
+          {commentInfo
+            .slice(0, numberOfPosts)
+            .map(({ postid, commentautor, commentcontent }) => {
+              return (
+                <UnorderedComment>
+                  <CommentAuthor>
+                    <UserList by={commentautor} />
+                  </CommentAuthor>
+                  <CommentContent>{commentcontent}</CommentContent>
+                </UnorderedComment>
+              );
+            })}
+          {hasMore === true && commentInfo.length > numberOfPosts && (
+            <ShowComments onClick={loadMore}>
+              Wyświetl więcej komentarzy
+            </ShowComments>
+          )}
+        </div>
       )}
     </div>
   );
