@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 import Register from "./Register";
-import { NewLoginInfo } from "../context/LoginInfo";
-import BeVegan from "../images/BeVeganIcon.png";
+import { NewLoginInfo } from "../../context/LoginInfo";
+import BeVegan from "../../images/BeVeganIcon.png";
 import axios from "axios";
 import MD5 from "crypto-js/md5";
 import {
@@ -15,13 +15,12 @@ import {
   StyleLink,
   LoginFlex,
   TextField
-} from "../styles/LoginStyle";
-import "../styles/MenuLoginStyle.css";
+} from "../../styles/LoginStyle";
+import "../../styles/MenuLoginStyle.css";
 
 const Login = () => {
   const [tempLogin, addTempLogin] = useState([]);
   const [isError, setError] = useState(false);
-  const [login, setLogin] = useState(false);
   const newLogin = event => {
     addTempLogin({
       login: event.target.value
@@ -69,7 +68,7 @@ const Login = () => {
   return (
     <LoginPage>
       <LoginFlex>
-        {user.username != "" && <Redirect to="/page" />}
+        {user.username !== "" && <Redirect to="/wall" />}
         <FormArea>
           <Image src={BeVegan} alt="be vegan logo" />
           {isError == true && (

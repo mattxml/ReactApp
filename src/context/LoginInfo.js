@@ -8,8 +8,8 @@ const useStateWithLocalStorage = localStorageKey => {
 
   useEffect(() => {
     localStorage.setItem(localStorageKey, username);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
-
   return [username, setUsername];
 };
 export const LoginInfoProvider = props => {

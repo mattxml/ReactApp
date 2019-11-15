@@ -1,21 +1,21 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import BeVegan from "../images/BeVeganIcon.png";
+import BeVegan from "../../images/BeVeganIcon.png";
 import {
   LoginPage,
   LoginForm,
   InputWrapper,
   LoginFlex
-} from "../styles/LoginStyle";
+} from "../../styles/LoginStyle";
 import {
   StyleLink,
   Image,
   TextField,
   FormArea,
   FormButton
-} from "../styles/RegisterStyle";
-import { NewLoginInfo } from "../context/LoginInfo";
-import "../styles/MenuLoginStyle.css";
+} from "../../styles/RegisterStyle";
+import { NewLoginInfo } from "../../context/LoginInfo";
+import "../../styles/MenuLoginStyle.css";
 import axios from "axios";
 import MD5 from "crypto-js/md5";
 const GoLoginPage = () => {

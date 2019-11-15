@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NewLoginInfo } from "../context/LoginInfo";
+import { NewLoginInfo } from "../../context/LoginInfo";
 import { Redirect } from "react-router-dom";
 const Reciptes = () => {
   const user = useContext(NewLoginInfo);

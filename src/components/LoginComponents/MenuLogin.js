@@ -7,8 +7,8 @@ import {
   UserMenuList,
   UserName,
   UserOption
-} from "../styles/MenuLoginStyle";
-import { NewLoginInfo } from "../context/LoginInfo";
+} from "../../styles/MenuLoginStyle";
+import { NewLoginInfo } from "../../context/LoginInfo";
 const Test = ({ click }) => {
   const user = useContext(NewLoginInfo);
   const [clicked, setClicked] = useState(click);
@@ -60,10 +60,22 @@ const Header = () => {
                 <MenuListLink to="/wall">Tablica</MenuListLink>
               </MenuList>
               <MenuList>
-                <MenuListLink to="/places">Miejsca</MenuListLink>
+                <MenuListLink to="/posts">Posty</MenuListLink>
               </MenuList>
               <MenuList>
-                <MenuListLink to="/reciptes">Przepisy</MenuListLink>
+                <MenuListLink to="/restaurants">Restauracje</MenuListLink>
+              </MenuList>
+              <MenuList>
+                <MenuListLink to="/products">Produkty</MenuListLink>
+              </MenuList>
+              <MenuList>
+                <MenuListLink to="/recipes">Przepisy</MenuListLink>
+              </MenuList>
+              <MenuList>
+                <MenuListLink to="/replacements">Zamienniki</MenuListLink>
+              </MenuList>
+              <MenuList>
+                <MenuListLink to="/about">O weganizmie</MenuListLink>
               </MenuList>
             </MenuUnorderedList>
           </NavOrderedList>

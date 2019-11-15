@@ -35,16 +35,27 @@ export const Comments = styled.li`
 export const ListImage = styled.li`
   padding: 0.3em 0.3em 0.3em 0;
 `;
+
+export const ListPostOptions = styled.li`
+  padding: 0.4em 0.4em 0.4em 0;
+  display: ${props => props.flex && "flex"};
+  align-items: ${props => props.flex && "center"};
+`;
+export const StarContent = styled.div`
+  display: flex;
+`;
 export const Image = styled.img`
   width: 25px;
   height: 25px;
   cursor: pointer;
   transition: content 1s;
+  /*
   :hover {
     content: url(${props => props.name});
   }
+  */
 `;
-export const WallContainer = styled.div`
+export const ContentContainer = styled.div`
   padding: 1em;
   display: flex;
   justify-content: space-between;

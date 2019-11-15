@@ -9,7 +9,9 @@ export const UserList = props => {
   }
   useEffect(() => {
     myAsyncEffect();
-  }, []);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInfo]);
 
   return (
     <div>

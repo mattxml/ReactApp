@@ -35,7 +35,6 @@ export const CommentsLoading = props => {
   };
   return (
     <div>
-      {console.log(commentInfo)}
       {commentInfo !== undefined && (
         <div>
           {commentInfo
