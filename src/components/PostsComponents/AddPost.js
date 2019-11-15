@@ -5,7 +5,7 @@ import {
   InputWrapper,
   TextField,
   TextArea
-} from "../../styles/WallStyle";
+} from "../../styles/PostStyle";
 import { Redirect } from "react-router-dom";
 import { NewLoginInfo } from "../../context/LoginInfo";
 import axios from "axios";
@@ -65,16 +65,16 @@ const AddPost = () => {
     fetchData().then(res => {
       setUserId(res[0].idusers);
     });
-  }, []);
+  }, [user.username]);
   return (
     <PostForm>
-      {isError == false && (
+      {isError === false && (
         <div>
           <p className="successMessage">Udało się dodać post</p>
           <GoPostsPage />
         </div>
       )}
-      {isError == true && (
+      {isError === true && (
         <p className="errorMessage">Nie udało się dodać postu.</p>
       )}
       <InputWrapper>

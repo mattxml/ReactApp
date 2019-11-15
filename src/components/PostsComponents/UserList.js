@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { UserLink } from "../../styles/WallStyle";
+import { UserLink } from "../../styles/PostStyle";
 export const UserList = props => {
   const [userInfo, setUserInfo] = useState();
   async function myAsyncEffect() {

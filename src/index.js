@@ -4,9 +4,12 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { LoginInfoProvider } from "./context/LoginInfo";
+import { NotifyProvider } from "./context/Notify";
 ReactDOM.render(
   <LoginInfoProvider>
-    <App />
+    <NotifyProvider>
+      <App />
+    </NotifyProvider>
   </LoginInfoProvider>,
   document.getElementById("root")
 );

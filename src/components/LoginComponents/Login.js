@@ -39,14 +39,14 @@ const Login = () => {
       );
       return result.data;
     };
-    let passwd = MD5(tempLogin.password);
+    let passwd = MD5(tempLogin.password).toString();
     fetchData().then(res => {
       if (
-        res.length != 0 &&
+        res.length !== 0 &&
         tempLogin.login.length > 4 &&
         tempLogin.password.length > 4
       ) {
-        if (res[0].password == passwd) {
+        if (res[0].password === passwd) {
           user.login(tempLogin.login);
           setError(false);
         } else {
@@ -71,7 +71,7 @@ const Login = () => {
         {user.username !== "" && <Redirect to="/wall" />}
         <FormArea>
           <Image src={BeVegan} alt="be vegan logo" />
-          {isError == true && (
+          {isError === true && (
             <p className="errorMessage">Login lub hasło nieprawidłowe</p>
           )}
           <LoginForm>

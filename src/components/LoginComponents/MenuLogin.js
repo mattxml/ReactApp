@@ -23,10 +23,10 @@ const Test = ({ click }) => {
   return (
     <UserMenuList>
       <UserName onClick={userSettings}>{user.username}</UserName>
-      {clicked == true && (
+      {clicked === true && (
         <div>
           <UserOption> Profil</UserOption>
-          <UserOption onClick={userLogout}>Wyloguj</UserOption>{" "}
+          <UserOption onClick={userLogout}>Wyloguj</UserOption>
         </div>
       )}
     </UserMenuList>

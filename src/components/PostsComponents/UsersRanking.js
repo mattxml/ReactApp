@@ -4,7 +4,7 @@ import {
   UsersRankingStyled,
   UsersItem,
   OrderedUsersList
-} from "../../styles/WallStyle";
+} from "../../styles/PostStyle";
 export const UsersRanking = () => {
   const usersSorted = users.sort((a, b) => (a.score < b.score ? 1 : -1));
   const listUsers = usersSorted.slice(0, 4).map(({ id, name, score }) => (

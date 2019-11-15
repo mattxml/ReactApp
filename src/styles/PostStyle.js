@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+export const ContainerPosts = styled.div`
+  width: 80%;
+  margin: auto;
+`;
 export const SortPost = styled.select`
   padding: 1em;
   cursor: pointer;
@@ -57,6 +61,7 @@ export const Image = styled.img`
 `;
 export const ContentContainer = styled.div`
   padding: 1em;
+  margin: 10em 0 0 0;
   display: flex;
   justify-content: space-between;
 `;
@@ -78,6 +83,7 @@ export const UsersItem = styled.li`
 export const OrderedUsersList = styled.ol`
   padding: 0;
   margin: 0;
+  width: 22em;
 `;
 export const UnorderedPost = styled.ul`
   font-family: "Nunito", sans-serif;

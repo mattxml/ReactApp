@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CommentsLoading } from "./CommentsLoading";
 import { UserList } from "./UserList";
@@ -18,8 +18,9 @@ import {
   WallHeader,
   SortPost,
   SortOption,
-  StarContent
-} from "../../styles/WallStyle";
+  StarContent,
+  ContainerPosts
+} from "../../styles/PostStyle";
 import edit_regular from "../../icons/edit.svg";
 import edit_solid from "../../icons/edit_solid.svg";
 import plus_regular from "../../icons/plus.svg";
@@ -28,7 +29,7 @@ import trash_regular from "../../icons/trash.svg";
 import trash_solid from "../../icons/trash_solid.svg";
 import star from "../../icons/star.svg";
 import star_clicked from "../../icons/star_1.svg";
-import StarRatingComponent from "react-star-rating-component";
+import { NewNotifyContext } from "../../context/Notify";
 export const PostList = () => {
   /*
     <StarRatingComponent
@@ -40,15 +41,13 @@ export const PostList = () => {
                   renderStarIcon={() => <span>✰</span>}
                 />
                 */
-  var arr = [];
   const [items, setItems] = useState([]);
   const starsContent = [star, star, star, star, star];
   const [starsArray, setStarsArray] = useState([[], []]);
-  const [rating, setRating] = useState(starsArray);
   const [allPosts, setAllPosts] = useState([]);
   const [apiLink, setApiLink] = useState("http://localhost:3001/posts");
   const [hasMore, setHasMore] = useState(true);
-  const [, forceUpdate] = React.useState(0);
+  const notify = useContext(NewNotifyContext);
   const FetchMoreData = () => {
     setTimeout(() => {
       setItems(allPosts.slice(0, items.length + 2));
@@ -73,18 +72,27 @@ export const PostList = () => {
     for (var i = 0; i < event.target.id; i++) {
       temp[id - 1][i] = star_clicked;
     }
-
     setStarsArray([...temp]);
-    //forceUpdate(n => !n);
+  };
+  const ratePost = (id, event) => {
+    let temp = starsArray;
+    for (var i = 0; i < event.target.id; i++) {
+      temp[id - 1][i] = star_clicked;
+    }
+    notify.set("Dodano ocenę o wartości " + event.target.id + "/5 do posta");
+    setStarsArray([...temp]);
+    setTimeout(clearNotify, 3000);
   };
   const hoverClear = id => {
     let temp = starsArray;
-    console.log(starsArray);
     for (var i = 0; i < 5; i++) {
       temp[id - 1][i] = star;
     }
     setStarsArray([...temp]);
     //   forceUpdate(n => !n);
+  };
+  const clearNotify = () => {
+    notify.set("");
   };
   useEffect(() => {
     const fetchData = async () => {
@@ -99,19 +107,11 @@ export const PostList = () => {
 
       setStarsArray(temp);
     };
-    /*
-      setStarsArray(
-        Array.from(
-          Array(result.data.slice(0, 3).length),
-          () => new Array(...starsContent)
-        )
-      );
-      */
-
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiLink]);
   return (
-    <div className="containerPost">
+    <ContainerPosts>
       <InfiniteScroll
         dataLength={items.length}
         next={FetchMoreData}
@@ -137,7 +137,6 @@ export const PostList = () => {
             <UnorderedImage>
               {starsArray[idposts] !== undefined && (
                 <StarContent>
-                  {console.log(starsArray[idposts][0])}
                   <ListPostOptions>
                     <Image
                       src={starsArray[idposts - 1][0]}
@@ -146,6 +145,7 @@ export const PostList = () => {
                       alt="oceń pozytywnie post"
                       onMouseOver={event => hoverElement(idposts, event)}
                       onMouseOut={() => hoverClear(idposts)}
+                      onClick={event => ratePost(idposts, event)}
                     />
                   </ListPostOptions>
                   <ListPostOptions>
@@ -156,6 +156,7 @@ export const PostList = () => {
                       alt="oceń pozytywnie post"
                       onMouseOver={event => hoverElement(idposts, event)}
                       onMouseOut={() => hoverClear(idposts)}
+                      onClick={event => ratePost(idposts, event)}
                     />
                   </ListPostOptions>
                   <ListPostOptions>
@@ -166,6 +167,7 @@ export const PostList = () => {
                       alt="oceń pozytywnie post"
                       onMouseOver={event => hoverElement(idposts, event)}
                       onMouseOut={() => hoverClear(idposts)}
+                      onClick={event => ratePost(idposts, event)}
                     />
                   </ListPostOptions>
                   <ListPostOptions>
@@ -176,6 +178,7 @@ export const PostList = () => {
                       alt="oceń pozytywnie post"
                       onMouseOver={event => hoverElement(idposts, event)}
                       onMouseOut={() => hoverClear(idposts)}
+                      onClick={event => ratePost(idposts, event)}
                     />
                   </ListPostOptions>
                   <ListPostOptions>
@@ -186,6 +189,7 @@ export const PostList = () => {
                       alt="oceń pozytywnie post"
                       onMouseOver={event => hoverElement(idposts, event)}
                       onMouseOut={() => hoverClear(idposts)}
+                      onClick={event => ratePost(idposts, event)}
                     />
                   </ListPostOptions>
                 </StarContent>
@@ -217,6 +221,6 @@ export const PostList = () => {
           </UnorderedPost>
         ))}
       </InfiniteScroll>
-    </div>
+    </ContainerPosts>
   );
 };

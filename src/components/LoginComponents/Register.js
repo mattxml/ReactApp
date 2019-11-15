@@ -30,7 +30,9 @@ const GoLoginPage = () => {
 const Register = () => {
   const [tempRegister, addTempRegister] = useState([]);
   const [isError, setError] = useState(undefined);
+
   const validateEmail = email => {
+    //eslint-disable-next-line
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   };
@@ -85,7 +87,7 @@ const Register = () => {
   const user = useContext(NewLoginInfo);
   return (
     <LoginPage>
-      {user.username != "" && <Redirect to="/page" />}
+      {user.username !== "" && <Redirect to="/page" />}
       <LoginFlex>
         <FormArea>
           <Image src={BeVegan} alt="be vegan logo" />
@@ -93,13 +95,13 @@ const Register = () => {
             href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700"
             rel="stylesheet"
           ></link>
-          {isError == false && (
+          {isError === false && (
             <div>
               <p className="successMessage">Udało się zarejestrować</p>
               <GoLoginPage />
             </div>
           )}
-          {isError == true && (
+          {isError === true && (
             <p className="errorMessage">
               Rejestracja zakończona niepowodzeniem
             </p>

@@ -28,6 +28,15 @@ export const NavOrderedList = styled.ol`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: white;
 `;
 export const UserMenuList = styled.ul`
   list-style: none;

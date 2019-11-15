@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Background from "../images/loginbackground.jpg";
 import { Link } from "react-router-dom";
+
 export const FormArea = styled.div`
   background: rgba(255, 255, 255);
   padding: 1em;
